@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => '52DV4IcaxZJaqSNfXzv06vSjZpAs8Ns7',
+	'key' => 'GENERATE KEY',
 
 	/*
 	|--------------------------------------------------------------------------
