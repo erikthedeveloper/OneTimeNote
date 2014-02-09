@@ -4,9 +4,12 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.1.*",
+		"laravel/framework": "4.1.*"
+    },
+    "require-dev": {
         "barryvdh/laravel-ide-helper": "1.*",
-        "way/generators": "dev-master"
+        "way/generators": "dev-master",
+        "phpunit/phpunit": "3.7.*"
     },
 	"autoload": {
 		"classmap": [
