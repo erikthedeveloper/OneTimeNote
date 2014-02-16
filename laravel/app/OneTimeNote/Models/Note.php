@@ -1,5 +1,6 @@
 <?php
 namespace OneTimeNote\Models;
+use Way\Database\Model;
 
 /**
  * An Eloquent Model: 'OneTimeNote\Models\Note'
@@ -12,9 +13,12 @@ namespace OneTimeNote\Models;
  * @property \Carbon\Carbon $updated_at
  * @property string $url_id
  */
-class Note extends \Eloquent {
+class Note extends Model {
 
 	protected $hidden = array('id', 'ip_address', 'url_id', 'email', 'updated_at');
     protected $fillable = array('email', 'secure_note', 'message');
-	public static $rules = array();
+    protected static $rules = array(
+        'secure_note' => 'required|min:1|max:1024',
+        'email' => 'email'
+    );
 }
