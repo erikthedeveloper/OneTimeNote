@@ -10,7 +10,8 @@
         "barryvdh/laravel-ide-helper": "1.*",
         "way/generators": "dev-master",
         "mockery/mockery": "dev-master@dev",
-        "phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": "3.7.*",
+        "way/database": "dev-master"
     },
 	"autoload": {
 		"classmap": [
