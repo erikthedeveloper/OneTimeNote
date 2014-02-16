@@ -53,7 +53,6 @@
             $this->assertResponseStatus(404);
         }
 
-
         public function testPostNoteSuccess()
         {
             // Arrange
@@ -69,7 +68,7 @@
             $this->assertInternalType('string', $response->getContent());
         }
 
-        public function testPostNoteFails()
+        public function testPostNoteAlreadyExistsWithinTimeLimit()
         {
             // Arrange
             $this->mock->shouldReceive('existingNote')->once()->andReturn($this->note);
@@ -80,6 +79,21 @@
 
             // Assert
             $this->assertResponseStatus(403);
+            $this->assertInternalType('string', $note->getContent());
+        }
+
+        public function testPostNoteFailsValidation()
+        {
+            // Arrange
+            $this->mock->shouldReceive('existingNote')->once()->andReturn(false);
+            $this->mock->shouldReceive('create')->once()->andReturnNull(); // Failed validation returns null anyway
+            $this->app->instance('OneTimeNote\Repositories\NoteRepositoryInterface', $this->mock);
+
+            // Act
+            $note = $this->action('POST', 'OneTimeNote\Controllers\NoteController@postNote');
+
+            // Assert
+            $this->assertResponseStatus(400);
             $this->assertInternalType('string', $note->getContent());
         }
     }

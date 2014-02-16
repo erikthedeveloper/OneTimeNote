@@ -37,7 +37,12 @@ class NoteController extends \Controller {
             };
         }
 
+
         $note = $this->note->create(\Input::all());
+
+        if (!$note) {
+            return \Response::json(array('message' => 'Note not created - please check fields and try again.'), 400);
+        }
 
         return \Response::json(array('message' => 'Note Created', 'note_url' => \Request::root() . '/note/' . $note->url_id . '/' . $note->key), 201);
 	}

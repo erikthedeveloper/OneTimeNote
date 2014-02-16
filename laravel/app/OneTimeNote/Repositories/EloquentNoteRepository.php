@@ -32,11 +32,14 @@ class EloquentNoteRepository implements NoteRepositoryInterface {
         $note->ip_address = \Request::getClientIp();
         $note->url_id = $url_id;
         $note->secure_note = $encryption->encrypt($input['secure_note']);
-        $note->save();
 
-        $note->key = $key;
+        if ($note->save()) {
+            $note->key = $key;
 
-        return $note;
+            return $note;
+        }
+
+        return null;
     }
 
     public function delete($id)
