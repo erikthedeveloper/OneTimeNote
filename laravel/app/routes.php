@@ -11,7 +11,6 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+//Route::get('/note/{id}', array('https', 'uses' => 'noteController@getNote'));
+Route::get('/note/{id}/{key}', array('uses' => 'OneTimeNote\Controllers\NoteController@getNote'));
+Route::post('/note', array('uses' => 'OneTimeNote\Controllers\NoteController@postNote'));
