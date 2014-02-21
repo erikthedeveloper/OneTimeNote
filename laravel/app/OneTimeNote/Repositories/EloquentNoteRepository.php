@@ -47,6 +47,13 @@ class EloquentNoteRepository implements NoteRepositoryInterface {
         Note::find($id)->delete();
     }
 
+    public function deleteNotesOlderThan($days)
+    {
+        $date = new \Carbon\Carbon();
+        $date = $date->subDays($days);
+        $note = Note::where('created_at', "<", $date)->get();
+    }
+
     public function existingNote() {
         return Note::where('ip_address', '=', \Request::getClientIp())->orderBy('created_at', 'desc')->first();
     }

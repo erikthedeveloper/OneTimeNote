@@ -10,5 +10,7 @@ interface NoteRepositoryInterface {
 
     public function delete($id);
 
+    public function deleteNotesOlderThan($day);
+
     public function existingNote();
 }
