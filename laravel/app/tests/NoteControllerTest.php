@@ -25,7 +25,7 @@
             unset($this->note);
         }
 
-        public function testGetNoteSuccess()
+        public function test_get_note_success()
         {
             // Arrange
             $this->mock->shouldReceive('find')->once()->andReturn($this->note);
@@ -40,7 +40,7 @@
             $this->assertInternalType('string', $response->getContent());
         }
 
-        public function testGetNoteFails()
+        public function test_get_note_fails()
         {
             // Arrange
             $this->mock->shouldReceive('find')->once()->andReturnNull();
@@ -53,7 +53,7 @@
             $this->assertResponseStatus(404);
         }
 
-        public function testPostNoteSuccess()
+        public function test_post_note_success()
         {
             // Arrange
             $this->mock->shouldReceive('existingNote')->once()->andReturn(false);
@@ -68,7 +68,7 @@
             $this->assertInternalType('string', $response->getContent());
         }
 
-        public function testPostNoteAlreadyExistsWithinTimeLimit()
+        public function test_post_note_which_already_exists_within_time_limit()
         {
             // Arrange
             $this->mock->shouldReceive('existingNote')->once()->andReturn($this->note);
@@ -82,7 +82,7 @@
             $this->assertInternalType('string', $note->getContent());
         }
 
-        public function testPostNoteFailsValidation()
+        public function test_post_note_fails_validation()
         {
             // Arrange
             $this->mock->shouldReceive('existingNote')->once()->andReturn(false);

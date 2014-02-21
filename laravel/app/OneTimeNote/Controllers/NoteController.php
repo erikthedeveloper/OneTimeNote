@@ -31,6 +31,7 @@ class NoteController extends \Controller {
         // Check if user has already submitted a note within the allotted time
         $existing_note = $this->note->existingNote();
         if ($existing_note) {
+            // @TODO - Possibly move all of this to repository to decouple from controller
             $now = new \Carbon\Carbon();
             if($now->diffInMinutes($existing_note->created_at) < 1) {
                 return \Response::json(array('message' => 'Note not created - please wait one full minute between note submissions.'), 403);
