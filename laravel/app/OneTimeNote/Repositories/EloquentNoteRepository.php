@@ -2,6 +2,7 @@
 
 namespace OneTimeNote\Repositories;
 
+use OneTimeNote\Contracts\NoteRepositoryInterface;
 use Illuminate\Encryption\Encrypter;
 use OneTimeNote\Models\Note;
 

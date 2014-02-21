@@ -3,7 +3,7 @@
 namespace OneTimeNote\Controllers;
 
 use Illuminate\Encryption\Encrypter;
-use OneTimeNote\Repositories\NoteRepositoryInterface as Note;
+use OneTimeNote\Contracts\NoteRepositoryInterface as Note;
 
 class NoteController extends \Controller {
     protected $note;

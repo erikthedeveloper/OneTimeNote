@@ -1,6 +1,6 @@
 <?php
 
-namespace OneTimeNote\Repositories;
+namespace OneTimeNote\Contracts;
 
 interface NoteRepositoryInterface {
 

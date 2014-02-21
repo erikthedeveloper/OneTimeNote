@@ -2,7 +2,7 @@
 
 namespace OneTimeNote\Commands;
 
-use OneTimeNote\Repositories\NoteRepositoryInterface as Note;
+use OneTimeNote\Contracts\NoteRepositoryInterface as Note;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
