@@ -12,5 +12,5 @@ interface NoteRepositoryInterface {
 
     public function deleteNotesOlderThan($day);
 
-    public function existingNote();
+    public function existingNoteByIpAddress();
 }

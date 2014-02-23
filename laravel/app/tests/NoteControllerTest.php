@@ -61,7 +61,7 @@
         public function test_post_note_success()
         {
             // Arrange
-            $this->mock->shouldReceive('existingNote')->once()->andReturn(false);
+            $this->mock->shouldReceive('existingNoteByIpAddress')->once()->andReturn(false);
             $this->mock->shouldReceive('create')->once()->andReturn($this->note);
             $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
 
@@ -76,7 +76,7 @@
         public function test_post_note_which_already_exists_within_time_limit()
         {
             // Arrange
-            $this->mock->shouldReceive('existingNote')->once()->andReturn($this->note);
+            $this->mock->shouldReceive('existingNoteByIpAddress')->once()->andReturn($this->note);
             $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
 
             // Act
@@ -90,7 +90,7 @@
         public function test_post_note_fails_validation()
         {
             // Arrange
-            $this->mock->shouldReceive('existingNote')->once()->andReturn(false);
+            $this->mock->shouldReceive('existingNoteByIpAddress')->once()->andReturn(false);
             $this->mock->shouldReceive('create')->once()->andReturnNull(); // Failed validation returns null anyway
             $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
 

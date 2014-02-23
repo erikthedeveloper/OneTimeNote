@@ -50,12 +50,16 @@ class EloquentNoteRepository implements NoteRepositoryInterface {
 
     public function deleteNotesOlderThan($days)
     {
+        if (!is_int($days)) {
+            /* @TODO - Something here */
+        }
+
         $date = new \Carbon\Carbon();
         $date = $date->subDays($days);
         Note::where('created_at', "<", $date)->delete();
     }
 
-    public function existingNote() {
+    public function existingNoteByIpAddress() {
         return Note::where('ip_address', '=', \Request::getClientIp())->orderBy('created_at', 'desc')->first();
     }
 }

@@ -20,10 +20,6 @@ class NoteController extends \Controller {
         $this->mail = $mail;
     }
 
-    public function getTest() {
-        return \Config::get('NOTE_HAS_BEEN_READ');
-    }
-
 	public function getNote($url_id, $key)
 	{
         $note = $this->note->find($url_id, $key);
@@ -44,7 +40,7 @@ class NoteController extends \Controller {
     public function postNote()
 	{
         // Check if user has already submitted a note within the allotted time
-        $existing_note = $this->note->existingNote();
+        $existing_note = $this->note->existingNoteByIpAddress();
         if ($existing_note) {
             // @TODO - Possibly move all of this to repository to decouple from controller
             $now = new Carbon();
