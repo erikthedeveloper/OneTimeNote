@@ -7,8 +7,13 @@ class OneTimeNoteServiceProvider extends ServiceProvider {
     public function register()
     {
         $this->app->bind(
-            'OneTimeNote\Contracts\NoteRepositoryInterface',
+            'OneTimeNote\Interfaces\NoteRepositoryInterface',
             'OneTimeNote\Repositories\EloquentNoteRepository'
+        );
+
+        $this->app->bind(
+            'OneTimeNote\Interfaces\NoteMailerInterface',
+            'OneTimeNote\Services\SwiftMailerNoteService'
         );
     }
 

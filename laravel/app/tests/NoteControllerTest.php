@@ -10,7 +10,7 @@
         public function setUp() {
             parent::setUp();
 
-            $this->mock = Mockery::mock('OneTimeNote\Contracts\NoteRepositoryInterface');
+            $this->mock = Mockery::mock('OneTimeNote\Interfaces\NoteRepositoryInterface');
 
             $this->note = new Note;
             $this->note->message = 'This is a message';
@@ -30,7 +30,12 @@
             // Arrange
             $this->mock->shouldReceive('find')->once()->andReturn($this->note);
             $this->mock->shouldReceive('delete')->once()->andReturnNull();
-            $this->app->instance('OneTimeNote\Contracts\NoteRepositoryInterface', $this->mock);
+
+            $Mailer = Mockery::mock('OneTimeNote\Interfaces\NoteMailerInterface');
+            $Mailer->shouldReceive('to')->once()->andReturnNull();
+
+            $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
+            $this->app->instance('OneTimeNote\Interfaces\NoteMailerInterface', $Mailer);
 
             // Act
             $response = $this->action('GET', 'OneTimeNote\Controllers\NoteController@getNote', ['url_id' => '1234567890abcdefg', 'key' => '1234567890abcdefg']);
@@ -44,7 +49,7 @@
         {
             // Arrange
             $this->mock->shouldReceive('find')->once()->andReturnNull();
-            $this->app->instance('OneTimeNote\Contracts\NoteRepositoryInterface', $this->mock);
+            $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
 
             // Act
             $this->action('GET', 'OneTimeNote\Controllers\NoteController@getNote', ['url_id' => '1234567890abcdefg', 'key' => '1234567890abcdefg']);
@@ -58,7 +63,7 @@
             // Arrange
             $this->mock->shouldReceive('existingNote')->once()->andReturn(false);
             $this->mock->shouldReceive('create')->once()->andReturn($this->note);
-            $this->app->instance('OneTimeNote\Contracts\NoteRepositoryInterface', $this->mock);
+            $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
 
             // Act
             $response = $this->action('POST', 'OneTimeNote\Controllers\NoteController@postNote');
@@ -72,7 +77,7 @@
         {
             // Arrange
             $this->mock->shouldReceive('existingNote')->once()->andReturn($this->note);
-            $this->app->instance('OneTimeNote\Contracts\NoteRepositoryInterface', $this->mock);
+            $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
 
             // Act
             $note = $this->action('POST', 'OneTimeNote\Controllers\NoteController@postNote');
@@ -87,7 +92,7 @@
             // Arrange
             $this->mock->shouldReceive('existingNote')->once()->andReturn(false);
             $this->mock->shouldReceive('create')->once()->andReturnNull(); // Failed validation returns null anyway
-            $this->app->instance('OneTimeNote\Contracts\NoteRepositoryInterface', $this->mock);
+            $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
 
             // Act
             $note = $this->action('POST', 'OneTimeNote\Controllers\NoteController@postNote');

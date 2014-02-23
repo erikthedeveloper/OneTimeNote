@@ -8,7 +8,7 @@ class OneTimeNoteDeleteCommandTest extends TestCase {
     public function setUp() {
         parent::setUp();
 
-        $this->mock = Mockery::mock('OneTimeNote\Contracts\NoteRepositoryInterface');
+        $this->mock = Mockery::mock('OneTimeNote\Interfaces\NoteRepositoryInterface');
     }
 
     public function tearDown() {
@@ -17,7 +17,7 @@ class OneTimeNoteDeleteCommandTest extends TestCase {
 
     public function test_with_no_days_specified_success()
     {
-        $this->mock = Mockery::mock('OneTimeNote\Contracts\NoteRepositoryInterface');
+        $this->mock = Mockery::mock('OneTimeNote\Interfaces\NoteRepositoryInterface');
         $this->mock->shouldReceive('deleteNotesOlderThan')
                    ->once()
                    ->andReturn(true);
