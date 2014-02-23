@@ -51,7 +51,7 @@ class OneTimeNoteDeleteCommand extends Command {
         }
 
         if(!is_integer($days)) {
-            $this->error('Failure');
+            $this->error("Failure - The 'Days' option must be a valid integer");
 
             return false;
         }
