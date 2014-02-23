@@ -50,6 +50,7 @@ class OneTimeNoteDeleteCommand extends Command {
             $days = 30;
         }
 
+        // @TODO - Artisan passes the number of days as a string, need to figure out if I can parse it as an int and than check for that
         if(!is_integer($days)) {
             $this->error("Failure - The 'Days' option must be a valid integer");
 

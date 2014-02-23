@@ -52,7 +52,7 @@ class EloquentNoteRepository implements NoteRepositoryInterface {
     {
         $date = new \Carbon\Carbon();
         $date = $date->subDays($days);
-        $note = Note::where('created_at', "<", $date)->get();
+        Note::where('created_at', "<", $date)->delete();
     }
 
     public function existingNote() {
