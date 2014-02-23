@@ -15,6 +15,10 @@ class OneTimeNoteServiceProvider extends ServiceProvider {
             'OneTimeNote\Interfaces\NoteMailerInterface',
             'OneTimeNote\Services\SwiftMailerNoteService'
         );
+
+        \View::addLocation(app('path').'/OneTimeNote/Views');
     }
+
+
 
 }
