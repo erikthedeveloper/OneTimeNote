@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Mail;
 
 class SwiftMailerNoteService implements NoteMailerInterface {
 
-    public function to($email) {
-        Mail::send(array('html' => 'mailer.default'), array(), function($message) use ($email)
+    public function to($email, $subject) {
+        Mail::send(array('html' => 'mailer.default'), array(), function($message) use ($email, $subject)
         {
-            $message->to($email)->subject('The note you created has been read and destroyed.');
+            $message->to($email)->subject($subject);
         });
     }
 }

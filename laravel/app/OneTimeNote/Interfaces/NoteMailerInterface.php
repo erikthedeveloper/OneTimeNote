@@ -4,6 +4,6 @@ namespace OneTimeNote\Interfaces;
 
 interface NoteMailerInterface {
 
-    public function to($email);
+    public function to($email, $subject);
 
 }

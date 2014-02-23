@@ -17,8 +17,8 @@ class OneTimeNoteServiceProvider extends ServiceProvider {
         );
 
         \View::addLocation(app('path').'/OneTimeNote/Views');
+
+        /* @TODO - Probably could find a better spot for this, possibly in a lang folder. Need to learn to do this */
+        \Config::set('NOTE_HAS_BEEN_READ', 'The note you created has been read and destroyed.');
     }
-
-
-
 }

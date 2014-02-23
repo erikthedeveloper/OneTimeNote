@@ -2,6 +2,7 @@
 
 namespace OneTimeNote\Controllers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Request;
@@ -19,6 +20,10 @@ class NoteController extends \Controller {
         $this->mail = $mail;
     }
 
+    public function getTest() {
+        return \Config::get('NOTE_HAS_BEEN_READ');
+    }
+
 	public function getNote($url_id, $key)
 	{
         $note = $this->note->find($url_id, $key);
@@ -28,7 +33,7 @@ class NoteController extends \Controller {
         }
 
         if ($note->email) {
-            $this->mail->to($note->email);
+            $this->mail->to($note->email, \Config::get('NOTE_HAS_BEEN_READ'));
         }
 
         $this->note->delete($note->id);
