@@ -47,6 +47,22 @@ class OneTimeNoteDeleteCommandTest extends TestCase {
         $this->assertContains("Success", $tester->getDisplay());
     }
 
+    public function test_no_notes_found_with_allotted_time()
+    {
+        $this->mock->shouldReceive('deleteNotesOlderThan')
+                   ->once()
+                   ->andReturn(false);
+
+        $command = new OneTimeNoteDeleteCommand($this->mock);
+
+        $tester = new CommandTester($command);
+
+        // Pass Days
+        $tester->execute(['--days' => 20]);
+        $this->assertInternalType('string', $tester->getDisplay());
+        $this->assertContains("No notes", $tester->getDisplay());
+    }
+
     public function test_delete_command_with_days_as_wrong_data_type_failure()
     {
         $command = new OneTimeNoteDeleteCommand($this->mock);

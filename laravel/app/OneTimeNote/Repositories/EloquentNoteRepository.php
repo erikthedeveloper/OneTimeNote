@@ -34,25 +34,40 @@ class EloquentNoteRepository implements NoteRepositoryInterface {
         $note->url_id = $url_id;
         $note->secure_note = $encryption->encrypt($input['secure_note']);
 
-        if ($note->save()) {
-            $note->key = $key;
-
-            return $note;
+        if (!$note->save()) {
+            return null;
         }
 
-        return null;
+        $note->key = $key;
+
+        return $note;
     }
 
     public function delete($id)
     {
-        Note::find($id)->delete();
+        $note = Note::find($id);
+
+        if (!$note) {
+            return null;
+        }
+
+        $note->delete();
     }
 
     public function deleteNotesOlderThan($days)
     {
         $date = new \Carbon\Carbon();
         $date = $date->subDays($days);
-        Note::where('created_at', "<", $date)->delete();
+
+        $notes = Note::where('created_at', "<", $date);
+
+        if ($notes->count() == 0) {
+            return null;
+        }
+
+        $notes->delete();
+
+        return true;
     }
 
     public function existingNoteByIpAddress() {
