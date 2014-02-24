@@ -42,25 +42,26 @@ class OneTimeNoteDeleteCommand extends Command {
 	 *
 	 * @return mixed
 	 */
-	public function fire()
-	{
-        $days = $this->option('days');
+public function fire()
+{
+    $days = $this->option('days');
 
-        if (!$days) {
-            $days = 30;
-        }
+    if (!$days) {
+        $days = 30;
+    }
 
-        // @TODO - Artisan passes the number of days as a string, need to figure out if I can parse it as an int and than check for that
-        if(!is_integer($days)) {
-            $this->error("Failure - The 'Days' option must be a valid integer");
+    $days = intval($days);
 
-            return false;
-        }
+    if ($days == 0) {
+        $this->error("Failure - The 'Days' option must be a valid integer");
 
-        $this->note->deleteNotesOlderThan($days);
+        return false;
+    }
 
-        $this->info('Success - Notes older than ' . $days . ' days(s) have been deleted.');
-	}
+    $this->note->deleteNotesOlderThan($days);
+
+    $this->info('Success - Notes older than ' . $days . ' days(s) have been deleted.');
+}
 
 	/**
 	 * Get the console command options.

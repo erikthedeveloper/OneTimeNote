@@ -50,10 +50,6 @@ class EloquentNoteRepository implements NoteRepositoryInterface {
 
     public function deleteNotesOlderThan($days)
     {
-        if (!is_int($days)) {
-            /* @TODO - Something here */
-        }
-
         $date = new \Carbon\Carbon();
         $date = $date->subDays($days);
         Note::where('created_at', "<", $date)->delete();
