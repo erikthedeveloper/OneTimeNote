@@ -1,13 +1,12 @@
 /bootstrap/compiled.php
-/app/config/local/*
 /app/assets/bower_components
 /vendor
+/node_modules
+/.sass-cache
 composer.phar
 composer.lock
 .env.local.php
 .env.php
 .DS_Store
-Thumbs.db
 .idea
-/node_modules
-/.sass-cache
+Thumbs.db
