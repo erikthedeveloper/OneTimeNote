@@ -1420,411 +1420,6 @@ class Artisan extends Illuminate\Support\Facades\Artisan{
 
 }
 
-class Auth extends Illuminate\Support\Facades\Auth{
-	/**
-	 * Create an instance of the database driver.
-	 *
-	 * @return \Illuminate\Auth\Guard
-	 * @static 
-	 */
-	 public static function createDatabaseDriver(){
-		return Illuminate\Auth\AuthManager::createDatabaseDriver();
-	 }
-
-	/**
-	 * Create an instance of the Eloquent driver.
-	 *
-	 * @return \Illuminate\Auth\Guard
-	 * @static 
-	 */
-	 public static function createEloquentDriver(){
-		return Illuminate\Auth\AuthManager::createEloquentDriver();
-	 }
-
-	/**
-	 * Get the default authentication driver name.
-	 *
-	 * @return string
-	 * @static 
-	 */
-	 public static function getDefaultDriver(){
-		return Illuminate\Auth\AuthManager::getDefaultDriver();
-	 }
-
-	/**
-	 * Set the default authentication driver name.
-	 *
-	 * @param string  $name
-	 * @return void
-	 * @static 
-	 */
-	 public static function setDefaultDriver($name){
-		 Illuminate\Auth\AuthManager::setDefaultDriver($name);
-	 }
-
-	/**
-	 * Create a new manager instance.
-	 *
-	 * @param \Illuminate\Foundation\Application  $app
-	 * @return void
-	 * @static 
-	 */
-	 public static function __construct($app){
-		//Method inherited from Illuminate\Support\Manager
-		 Illuminate\Auth\AuthManager::__construct($app);
-	 }
-
-	/**
-	 * Get a driver instance.
-	 *
-	 * @param string  $driver
-	 * @return mixed
-	 * @static 
-	 */
-	 public static function driver($driver = null){
-		//Method inherited from Illuminate\Support\Manager
-		return Illuminate\Auth\AuthManager::driver($driver);
-	 }
-
-	/**
-	 * Register a custom driver creator Closure.
-	 *
-	 * @param string   $driver
-	 * @param Closure  $callback
-	 * @return \Illuminate\Support\Manager|static
-	 * @static 
-	 */
-	 public static function extend($driver, $callback){
-		//Method inherited from Illuminate\Support\Manager
-		return Illuminate\Auth\AuthManager::extend($driver, $callback);
-	 }
-
-	/**
-	 * Get all of the created "drivers".
-	 *
-	 * @return array
-	 * @static 
-	 */
-	 public static function getDrivers(){
-		//Method inherited from Illuminate\Support\Manager
-		return Illuminate\Auth\AuthManager::getDrivers();
-	 }
-
-	/**
-	 * Dynamically call the default driver instance.
-	 *
-	 * @param string  $method
-	 * @param array   $parameters
-	 * @return mixed
-	 * @static 
-	 */
-	 public static function __call($method, $parameters){
-		//Method inherited from Illuminate\Support\Manager
-		return Illuminate\Auth\AuthManager::__call($method, $parameters);
-	 }
-
-	/**
-	 * Determine if the current user is authenticated.
-	 *
-	 * @return bool
-	 * @static 
-	 */
-	 public static function check(){
-		return Illuminate\Auth\Guard::check();
-	 }
-
-	/**
-	 * Determine if the current user is a guest.
-	 *
-	 * @return bool
-	 * @static 
-	 */
-	 public static function guest(){
-		return Illuminate\Auth\Guard::guest();
-	 }
-
-	/**
-	 * Get the currently authenticated user.
-	 *
-	 * @return \Illuminate\Auth\UserInterface|null
-	 * @static 
-	 */
-	 public static function user(){
-		return Illuminate\Auth\Guard::user();
-	 }
-
-	/**
-	 * Log a user into the application without sessions or cookies.
-	 *
-	 * @param array  $credentials
-	 * @return bool
-	 * @static 
-	 */
-	 public static function once($credentials = array()){
-		return Illuminate\Auth\Guard::once($credentials);
-	 }
-
-	/**
-	 * Validate a user's credentials.
-	 *
-	 * @param array  $credentials
-	 * @return bool
-	 * @static 
-	 */
-	 public static function validate($credentials = array()){
-		return Illuminate\Auth\Guard::validate($credentials);
-	 }
-
-	/**
-	 * Attempt to authenticate using HTTP Basic Auth.
-	 *
-	 * @param string  $field
-	 * @param \Symfony\Component\HttpFoundation\Request  $request
-	 * @return \Symfony\Component\HttpFoundation\Response|null
-	 * @static 
-	 */
-	 public static function basic($field = 'email', $request = null){
-		return Illuminate\Auth\Guard::basic($field, $request);
-	 }
-
-	/**
-	 * Perform a stateless HTTP Basic login attempt.
-	 *
-	 * @param string  $field
-	 * @param \Symfony\Component\HttpFoundation\Request  $request
-	 * @return \Symfony\Component\HttpFoundation\Response|null
-	 * @static 
-	 */
-	 public static function onceBasic($field = 'email', $request = null){
-		return Illuminate\Auth\Guard::onceBasic($field, $request);
-	 }
-
-	/**
-	 * Attempt to authenticate a user using the given credentials.
-	 *
-	 * @param array  $credentials
-	 * @param bool   $remember
-	 * @param bool   $login
-	 * @return bool
-	 * @static 
-	 */
-	 public static function attempt($credentials = array(), $remember = false, $login = true){
-		return Illuminate\Auth\Guard::attempt($credentials, $remember, $login);
-	 }
-
-	/**
-	 * Register an authentication attempt event listener.
-	 *
-	 * @param mixed  $callback
-	 * @return void
-	 * @static 
-	 */
-	 public static function attempting($callback){
-		 Illuminate\Auth\Guard::attempting($callback);
-	 }
-
-	/**
-	 * Log a user into the application.
-	 *
-	 * @param \Illuminate\Auth\UserInterface  $user
-	 * @param bool  $remember
-	 * @return void
-	 * @static 
-	 */
-	 public static function login($user, $remember = false){
-		 Illuminate\Auth\Guard::login($user, $remember);
-	 }
-
-	/**
-	 * Log the given user ID into the application.
-	 *
-	 * @param mixed  $id
-	 * @param bool   $remember
-	 * @return \Illuminate\Auth\UserInterface
-	 * @static 
-	 */
-	 public static function loginUsingId($id, $remember = false){
-		return Illuminate\Auth\Guard::loginUsingId($id, $remember);
-	 }
-
-	/**
-	 * Log the given user ID into the application without sessions or cookies.
-	 *
-	 * @param mixed  $id
-	 * @return bool
-	 * @static 
-	 */
-	 public static function onceUsingId($id){
-		return Illuminate\Auth\Guard::onceUsingId($id);
-	 }
-
-	/**
-	 * Log the user out of the application.
-	 *
-	 * @return void
-	 * @static 
-	 */
-	 public static function logout(){
-		 Illuminate\Auth\Guard::logout();
-	 }
-
-	/**
-	 * Get the cookie creator instance used by the guard.
-	 *
-	 * @return \Illuminate\Cookie\CookieJar
-	 * @throws \RuntimeException
-	 * @static 
-	 */
-	 public static function getCookieJar(){
-		return Illuminate\Auth\Guard::getCookieJar();
-	 }
-
-	/**
-	 * Set the cookie creator instance used by the guard.
-	 *
-	 * @param \Illuminate\Cookie\CookieJar  $cookie
-	 * @return void
-	 * @static 
-	 */
-	 public static function setCookieJar($cookie){
-		 Illuminate\Auth\Guard::setCookieJar($cookie);
-	 }
-
-	/**
-	 * Get the event dispatcher instance.
-	 *
-	 * @return \Illuminate\Events\Dispatcher
-	 * @static 
-	 */
-	 public static function getDispatcher(){
-		return Illuminate\Auth\Guard::getDispatcher();
-	 }
-
-	/**
-	 * Set the event dispatcher instance.
-	 *
-	 * @param \Illuminate\Events\Dispatcher
-	 * @static 
-	 */
-	 public static function setDispatcher($events){
-		 Illuminate\Auth\Guard::setDispatcher($events);
-	 }
-
-	/**
-	 * Get the session store used by the guard.
-	 *
-	 * @return \Illuminate\Session\Store
-	 * @static 
-	 */
-	 public static function getSession(){
-		return Illuminate\Auth\Guard::getSession();
-	 }
-
-	/**
-	 * Get the user provider used by the guard.
-	 *
-	 * @return \Illuminate\Auth\UserProviderInterface
-	 * @static 
-	 */
-	 public static function getProvider(){
-		return Illuminate\Auth\Guard::getProvider();
-	 }
-
-	/**
-	 * Set the user provider used by the guard.
-	 *
-	 * @param \Illuminate\Auth\UserProviderInterface  $provider
-	 * @return void
-	 * @static 
-	 */
-	 public static function setProvider($provider){
-		 Illuminate\Auth\Guard::setProvider($provider);
-	 }
-
-	/**
-	 * Return the currently cached user of the application.
-	 *
-	 * @return \Illuminate\Auth\UserInterface|null
-	 * @static 
-	 */
-	 public static function getUser(){
-		return Illuminate\Auth\Guard::getUser();
-	 }
-
-	/**
-	 * Set the current user of the application.
-	 *
-	 * @param \Illuminate\Auth\UserInterface  $user
-	 * @return void
-	 * @static 
-	 */
-	 public static function setUser($user){
-		 Illuminate\Auth\Guard::setUser($user);
-	 }
-
-	/**
-	 * Get the current request instance.
-	 *
-	 * @return \Symfony\Component\HttpFoundation\Request
-	 * @static 
-	 */
-	 public static function getRequest(){
-		return Illuminate\Auth\Guard::getRequest();
-	 }
-
-	/**
-	 * Set the current request instance.
-	 *
-	 * @param \Symfony\Component\HttpFoundation\Request
-	 * @return \Illuminate\Auth\Guard
-	 * @static 
-	 */
-	 public static function setRequest($request){
-		return Illuminate\Auth\Guard::setRequest($request);
-	 }
-
-	/**
-	 * Get the last user we attempted to authenticate.
-	 *
-	 * @return \Illuminate\Auth\UserInterface
-	 * @static 
-	 */
-	 public static function getLastAttempted(){
-		return Illuminate\Auth\Guard::getLastAttempted();
-	 }
-
-	/**
-	 * Get a unique identifier for the auth session value.
-	 *
-	 * @return string
-	 * @static 
-	 */
-	 public static function getName(){
-		return Illuminate\Auth\Guard::getName();
-	 }
-
-	/**
-	 * Get the name of the cookie used to store the "recaller".
-	 *
-	 * @return string
-	 * @static 
-	 */
-	 public static function getRecallerName(){
-		return Illuminate\Auth\Guard::getRecallerName();
-	 }
-
-	/**
-	 * Determine if the user was authenticated via "remember me" cookie.
-	 *
-	 * @return bool
-	 * @static 
-	 */
-	 public static function viaRemember(){
-		return Illuminate\Auth\Guard::viaRemember();
-	 }
-
-}
-
 class Blade extends Illuminate\Support\Facades\Blade{
 	/**
 	 * Compile the view at the given path.
@@ -1926,6 +1521,26 @@ class Blade extends Illuminate\Support\Facades\Blade{
 	 */
 	 public static function setEscapedContentTags($openTag, $closeTag){
 		 Illuminate\View\Compilers\BladeCompiler::setEscapedContentTags($openTag, $closeTag);
+	 }
+
+	/**
+	 * Gets the content tags used for the compiler.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function getContentTags(){
+		return Illuminate\View\Compilers\BladeCompiler::getContentTags();
+	 }
+
+	/**
+	 * Gets the escaped content tags used for the compiler.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function getEscapedContentTags(){
+		return Illuminate\View\Compilers\BladeCompiler::getEscapedContentTags();
 	 }
 
 	/**
@@ -2097,9 +1712,9 @@ class Cache extends Illuminate\Support\Facades\Cache{
 	/**
 	 * Store an item in the cache.
 	 *
-	 * @param string              $key
-	 * @param mixed               $value
-	 * @param Carbon|Datetime|int $minutes
+	 * @param string  $key
+	 * @param mixed   $value
+	 * @param \DateTime|int  $minutes
 	 * @return void
 	 * @static 
 	 */
@@ -2110,9 +1725,9 @@ class Cache extends Illuminate\Support\Facades\Cache{
 	/**
 	 * Store an item in the cache if the key does not exist.
 	 *
-	 * @param string              $key
-	 * @param mixed               $value
-	 * @param Carbon|Datetime|int $minutes
+	 * @param string  $key
+	 * @param mixed   $value
+	 * @param \DateTime|int  $minutes
 	 * @return bool
 	 * @static 
 	 */
@@ -2123,9 +1738,9 @@ class Cache extends Illuminate\Support\Facades\Cache{
 	/**
 	 * Get an item from the cache, or store the default value.
 	 *
-	 * @param string              $key
-	 * @param Carbon|Datetime|int $minutes
-	 * @param Closure             $callback
+	 * @param string  $key
+	 * @param \DateTime|int  $minutes
+	 * @param Closure  $callback
 	 * @return mixed
 	 * @static 
 	 */
@@ -2236,8 +1851,8 @@ class Cache extends Illuminate\Support\Facades\Cache{
 	/**
 	 * Register a macro with the Cache class.
 	 *
-	 * @param string $name
-	 * @param callable $callback
+	 * @param string    $name
+	 * @param callable  $callback
 	 * @return void
 	 * @static 
 	 */
@@ -3364,6 +2979,17 @@ class DB extends Illuminate\Support\Facades\DB{
 	 }
 
 	/**
+	 * Determine whether we're logging queries.
+	 *
+	 * @return bool
+	 * @static 
+	 */
+	 public static function logging(){
+		//Method inherited from Illuminate\Database\Connection
+		return Illuminate\Database\MySqlConnection::logging();
+	 }
+
+	/**
 	 * Get the name of the connected database.
 	 *
 	 * @return string
@@ -4301,7 +3927,7 @@ class Eloquent extends Illuminate\Database\Eloquent\Model{
 	/**
 	 * Indicate that the query results should be cached.
 	 *
-	 * @param \Carbon\Carbon|\Datetime|int  $minutes
+	 * @param \DateTime|int  $minutes
 	 * @param string  $key
 	 * @return \Illuminate\Database\Query\Builder|static
 	 * @static 
@@ -7929,83 +7555,6 @@ class Paginator extends Illuminate\Support\Facades\Paginator{
 
 }
 
-class Password extends Illuminate\Support\Facades\Password{
-	/**
-	 * Create a new password broker instance.
-	 *
-	 * @param \Illuminate\Auth\Reminders\ReminderRepositoryInterface  $reminders
-	 * @param \Illuminate\Auth\UserProviderInterface  $users
-	 * @param \Illuminate\Mail\Mailer  $mailer
-	 * @param string  $reminderView
-	 * @return void
-	 * @static 
-	 */
-	 public static function __construct($reminders, $users, $mailer, $reminderView){
-		 Illuminate\Auth\Reminders\PasswordBroker::__construct($reminders, $users, $mailer, $reminderView);
-	 }
-
-	/**
-	 * Send a password reminder to a user.
-	 *
-	 * @param array    $credentials
-	 * @param Closure  $callback
-	 * @return string
-	 * @static 
-	 */
-	 public static function remind($credentials, $callback = null){
-		return Illuminate\Auth\Reminders\PasswordBroker::remind($credentials, $callback);
-	 }
-
-	/**
-	 * Send the password reminder e-mail.
-	 *
-	 * @param \Illuminate\Auth\Reminders\RemindableInterface  $user
-	 * @param string   $token
-	 * @param Closure  $callback
-	 * @return void
-	 * @static 
-	 */
-	 public static function sendReminder($user, $token, $callback = null){
-		 Illuminate\Auth\Reminders\PasswordBroker::sendReminder($user, $token, $callback);
-	 }
-
-	/**
-	 * Reset the password for the given token.
-	 *
-	 * @param array    $credentials
-	 * @param Closure  $callback
-	 * @return mixed
-	 * @static 
-	 */
-	 public static function reset($credentials, $callback){
-		return Illuminate\Auth\Reminders\PasswordBroker::reset($credentials, $callback);
-	 }
-
-	/**
-	 * Set a custom password validator.
-	 *
-	 * @param \Closure  $callback
-	 * @return void
-	 * @static 
-	 */
-	 public static function validator($callback){
-		 Illuminate\Auth\Reminders\PasswordBroker::validator($callback);
-	 }
-
-	/**
-	 * Get the user for the given credentials.
-	 *
-	 * @param array  $credentials
-	 * @return \Illuminate\Auth\Reminders\RemindableInterface
-	 * @throws \UnexpectedValueException
-	 * @static 
-	 */
-	 public static function getUser($credentials){
-		return Illuminate\Auth\Reminders\PasswordBroker::getUser($credentials);
-	 }
-
-}
-
 class Queue extends Illuminate\Support\Facades\Queue{
 	/**
 	 * Create a new queue manager instance.
@@ -8150,7 +7699,7 @@ class Queue extends Illuminate\Support\Facades\Queue{
 	 *
 	 * @param \DateTime|int  $delay
 	 * @param string  $job
-	 * @param mixed  $data
+	 * @param mixed   $data
 	 * @param string  $queue
 	 * @return mixed
 	 * @static 
@@ -8184,8 +7733,8 @@ class Queue extends Illuminate\Support\Facades\Queue{
 	/**
 	 * Push a new an array of jobs onto the queue.
 	 *
-	 * @param array  $jobs
-	 * @param mixed  $data
+	 * @param array   $jobs
+	 * @param mixed   $data
 	 * @param string  $queue
 	 * @return mixed
 	 * @static 
@@ -11771,5 +11320,8 @@ class View extends Illuminate\Support\Facades\View{
 		return Illuminate\View\Environment::getNames();
 	 }
 
+}
+
+class Model extends Way\Database\Model{
 }
 
