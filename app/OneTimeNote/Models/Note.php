@@ -15,8 +15,8 @@ use Way\Database\Model;
  */
 class Note extends Model {
 
-	protected $hidden = array('id', 'ip_address', 'url_id', 'email', 'updated_at');
-    protected $fillable = array('email', 'secure_note', 'message');
+	protected $hidden = array('id', 'ip_address', 'url_id', 'email', 'created_at', 'updated_at');
+    protected $fillable = array('email', 'secure_note');
     protected static $rules = array(
         'secure_note' => 'required|min:1|max:1024',
         'email' => 'email'

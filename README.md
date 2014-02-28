@@ -43,12 +43,12 @@ Installation
 How to create a note
 --------------
 
-POST a note as valid JSON syntax with the HTTP Content-Type set as 'application/json'.
+HTTP POST a note as valid JSON syntax with the HTTP Content-Type set as 'application/json'.
 
 ```json
 {
     "secure_note": "Yo Ho, Let's go!",
-	"email": "email@address.com"
+	"email": "email@address.com",
 }
 ```
 
@@ -66,8 +66,8 @@ How to retrieve a note
 HTTP GET the URL provided https://localhost/note/GMwQTOcANV5kDpXc/nD8R3M05pE2Cynx4
 ```json
 {
+    "message":"Note Destroyed",
     "secure_note": "Yo Ho, Let's go!",
-    "created_at": { datetime here }
 }
 ```
 

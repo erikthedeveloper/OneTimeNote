@@ -29,9 +29,10 @@ class NoteController extends \Controller {
         }
 
         if ($note->email) {
-            $this->mail->to($note->email, \Config::get('NOTE_HAS_BEEN_READ'));
+            $this->mail->to($note->email, Config::get('NOTE_HAS_BEEN_READ'));
         }
 
+        $note->message = 'Note Destroyed';
         $this->note->delete($note->id);
 
 		return \Response::json($note);
