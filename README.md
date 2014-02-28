@@ -1,21 +1,82 @@
-## Laravel PHP Framework
+Laravel - OneTimeNote
+=========
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework)
+A small Laravel 4.1.x REST application that allows you to pass a JSON formatted note and securely store the note in a database. The application will provide a one time use URL to decrypt and show the note. Once the url is requested the note faces it's impending doom.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+Created By
+----
+Andrew Del Prete ([@pathsofdesign])
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+Version
+----
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+1.0
 
-## Official Documentation
+Dependencies
+-----------
+* PHP >= 5.3.7
+* MySQL
+* MCrypt PHP Extension
+* SMTP, PHP Mail, or Sendmail.
+* SSL
+* Composer
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+How is it secure?
+--------------
+When a user creates a note, two random 16 character strings are created. One of these strings is stored in the DB to find the entry later, and a combination of the two strings are used to encrypt the note and store it in the DB. The user is provided with a URL that has both strings in it. Since each note is encrypted with completely different keys, only the person who attains the URL can decrypt the message.
 
-### Contributing To Laravel
+Installation
+--------------
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+1. Clone the repo git@github.com:Pathsofdesign/OneTimeNote.git
+2. Create a new MySQL database 
+3. Run 'composer install' from the CLI
+4. Edit app/config/app.php and add database credentials
+5. Adjust environment settings in app/bootstrap/start.php
+6. Configure mail settings in app/config/mail.php
+7. Run Laravel migration 'php artisan migrate' from the CLI
 
-### License
+**The person creating the note must take care how they share the URL.*
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+**The server MUST be running a valid SSL.*
+
+How to create a note
+--------------
+
+POST a note as valid JSON syntax with the HTTP Content-Type set as 'application/json'.
+
+```json
+{
+    "secure_note": "Yo Ho, Let's go!",
+	"email": "email@address.com"
+}
+```
+
+**Returns**
+```json
+{
+    "message":"Note Created",
+    "note_url":"https:\/\/localhost\/note\/GMwQTOcANV5kDpXc\/nD8R3M05pE2Cynx4"
+}
+```
+**The 'email' property isn't necessary but can be used to send the note creator an e-mail once the note is requested and destroyed*
+
+How to retrieve a note
+--------------
+HTTP GET the URL provided https://localhost/note/GMwQTOcANV5kDpXc/nD8R3M05pE2Cynx4
+```json
+{
+    "secure_note": "Yo Ho, Let's go!",
+    "created_at": { datetime here }
+}
+```
+
+Demo
+----
+Coming Soon
+
+License
+----
+MIT
+
+[@pathsofdesign]:http://www.twitter.com/pathsofdesign
