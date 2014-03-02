@@ -13,15 +13,16 @@
 
 App::before(function($request)
 {
-	//
 });
-
 
 App::after(function($request, $response)
 {
-	//
+    $response->headers->set('Access-Control-Allow-Origin', 'http://localhost:1337');
+    $response->headers->set('Access-Control-Allow-Methods', 'GET, POST');
+    $response->headers->set('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Requested-With');
+    $response->headers->set('Access-Control-Allow-Credentials', 'true');
+    return $response;
 });
-
 /*
 |--------------------------------------------------------------------------
 | Authentication Filters

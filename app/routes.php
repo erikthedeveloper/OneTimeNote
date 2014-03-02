@@ -14,3 +14,8 @@
 //Route::get('/note/{id}', array('https', 'uses' => 'noteController@getNote'));
 Route::get('/note/{id}/{key}', array('uses' => 'OneTimeNote\Controllers\NoteController@getNote'));
 Route::post('/note', array('uses' => 'OneTimeNote\Controllers\NoteController@postNote'));
+
+App::missing(function($exception)
+{
+    return Response::json(array('message' => 'nothing to see here'), 404);
+});
