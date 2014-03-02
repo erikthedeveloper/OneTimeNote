@@ -43,7 +43,7 @@ class NoteController extends \Controller {
         // Check if user has already submitted a note within the allotted time
         $existing_note = $this->note->existingNoteByIpAddress();
         if ($existing_note) {
-            // @TODO - Possibly move all of this to repository to decouple from controller
+            // @TODO - Possibly move all of this to repository to decouple from controller, possibly a before filter?
             $now = new Carbon();
             if($now->diffInMinutes($existing_note->created_at) < 1) {
                 return Response::json(array('message' => 'Note not created - please wait one full minute between note submissions.'), 403);
@@ -56,6 +56,6 @@ class NoteController extends \Controller {
             return Response::json(array('message' => 'Note not created - please check fields and try again.'), 400);
         }
 
-        return Response::json(array('message' => 'Note Created', 'note_url' => Request::root() . '/note/' . $note->url_id . '/' . $note->key), 201);
+        return Response::json(array('message' => 'Note Created', 'note_url' => Config::get('NOTE_SITE') . $note->url_id . '/' . $note->key), 201);
 	}
 }
