@@ -33,8 +33,8 @@ Installation
 3. Run 'composer install' from the CLI
 4. Edit database credentials in app/config/database.php
 5. Edit environment settings in app/bootstrap/start.php
-6  Edit Access-Control-Allow-Origin URL in app/filters.php
-7  Edit 'NOTE_SITE' Config in app/OneTimeNote/OneTimeNoteServiceProvider.php to the URL our application should allow API requests from via CORS.
+6.  Edit Access-Control-Allow-Origin URL in app/filters.php
+7.  Edit 'NOTE_SITE' Config in app/OneTimeNote/OneTimeNoteServiceProvider.php to the URL our application should allow API requests from via CORS.
 8. Configure mail settings in app/config/mail.php
 9. Run Laravel migration 'php artisan migrate' from the CLI
 
