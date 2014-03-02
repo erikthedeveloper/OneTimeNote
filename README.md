@@ -31,10 +31,12 @@ Installation
 1. Clone the repo git@github.com:Pathsofdesign/OneTimeNote.git
 2. Create a new MySQL database 
 3. Run 'composer install' from the CLI
-4. Edit app/config/app.php and add database credentials
-5. Adjust environment settings in app/bootstrap/start.php
-6. Configure mail settings in app/config/mail.php
-7. Run Laravel migration 'php artisan migrate' from the CLI
+4. Edit database credentials in app/config/database.php
+5. Edit environment settings in app/bootstrap/start.php
+6  Edit Access-Control-Allow-Origin URL in app/filters.php
+7  Edit 'NOTE_SITE' Config in app/OneTimeNote/OneTimeNoteServiceProvider.php to the URL our application should allow API requests from via CORS.
+8. Configure mail settings in app/config/mail.php
+9. Run Laravel migration 'php artisan migrate' from the CLI
 
 **The person creating the note must take care how they share the URL.*
 
@@ -48,7 +50,7 @@ HTTP POST a note as valid JSON syntax with the HTTP Content-Type set as 'applica
 ```json
 {
     "secure_note": "Yo Ho, Let's go!",
-	"email": "email@address.com",
+    "email": "email@address.com",
 }
 ```
 
@@ -56,7 +58,7 @@ HTTP POST a note as valid JSON syntax with the HTTP Content-Type set as 'applica
 ```json
 {
     "message":"Note Created",
-    "note_url":"https:\/\/localhost\/note\/GMwQTOcANV5kDpXc\/nD8R3M05pE2Cynx4"
+    "note_url":"https://localhost/note/GMwQTOcANV5kDpXc/nD8R3M05pE2Cynx4"
 }
 ```
 **The 'email' property isn't necessary but can be used to send the note creator an e-mail once the note is requested and destroyed*
@@ -69,6 +71,14 @@ HTTP GET the URL provided https://localhost/note/GMwQTOcANV5kDpXc/nD8R3M05pE2Cyn
     "message":"Note Destroyed",
     "secure_note": "Yo Ho, Let's go!",
 }
+```
+
+Artisan Commands
+--------------
+OneTimeNote offers a convenience command that allows you to delete notes older than a specific amount of days. This would be good for a cron job.
+```cli
+// Defaults to 30
+oneTimeNote:delete --days=20
 ```
 
 Demo
