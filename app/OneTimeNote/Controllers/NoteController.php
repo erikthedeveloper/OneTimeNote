@@ -4,8 +4,8 @@ namespace OneTimeNote\Controllers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Request;
 use Carbon\Carbon;
 use OneTimeNote\Interfaces\NoteRepositoryInterface as Note;
 use OneTimeNote\Interfaces\NoteMailerInterface as Mailer;
@@ -25,17 +25,17 @@ class NoteController extends \Controller {
         $note = $this->note->find($url_id, $key);
 
         if (!$note) {
-            return Response::json(array('message' => 'Note not found'), 404);
+            return Response::json(array('message' => Lang::get('onetimenote.messages.NOTE_NOT_FOUND')), 404);
         }
 
         if ($note->email) {
-            $this->mail->to($note->email, Config::get('NOTE_HAS_BEEN_READ'));
+            $this->mail->to($note->email, Lang::get('onetimenote.mailer.EMAIL_SUBJECT'));
         }
 
         $note->message = 'Note Destroyed';
         $this->note->delete($note->id);
 
-		return \Response::json($note);
+		return Response::json($note);
 	}
 
     public function postNote()
@@ -46,16 +46,16 @@ class NoteController extends \Controller {
             // @TODO - Possibly move all of this to repository to decouple from controller, possibly a before filter?
             $now = new Carbon();
             if($now->diffInMinutes($existing_note->created_at) < 1) {
-                return Response::json(array('message' => 'Note not created - please wait one full minute between note submissions.'), 403);
+                return Response::json(array('message' => Lang::get('onetimenote.messages.NOTE_DURATION', array('time' => 'one full minute'))), 403);
             };
         }
 
         $note = $this->note->create(Input::all());
 
         if (!$note) {
-            return Response::json(array('message' => 'Note not created - please check fields and try again.'), 400);
+            return Response::json(array('message' => Lang::get('onetimenote.messages.NOTE_VALIDATION_ERROR')), 400);
         }
 
-        return Response::json(array('message' => 'Note Created', 'note_url' => Config::get('NOTE_SITE') . $note->url_id . '/' . $note->key), 201);
+        return Response::json(array('message' => 'Note Created', 'note_url' => Config::get('onetimenote.SITE_IMPLEMENTATION_URL') . $note->url_id . '/' . $note->key), 201);
 	}
 }

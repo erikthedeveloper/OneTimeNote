@@ -50,7 +50,7 @@ HTTP POST a note as valid JSON syntax with the HTTP Content-Type set as 'applica
 ```json
 {
     "secure_note": "Yo Ho, Let's go!",
-    "email": "email@address.com",
+    "email": "email@address.com"
 }
 ```
 
@@ -69,7 +69,7 @@ HTTP GET the URL provided https://localhost/note/GMwQTOcANV5kDpXc/nD8R3M05pE2Cyn
 ```json
 {
     "message":"Note Destroyed",
-    "secure_note": "Yo Ho, Let's go!",
+    "secure_note": "Yo Ho, Let's go!"
 }
 ```
 
