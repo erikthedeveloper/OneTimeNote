@@ -2,7 +2,6 @@
 
 namespace OneTimeNote\Repositories;
 
-use Illuminate\Encryption\DecryptException;
 use OneTimeNote\Interfaces\NoteRepositoryInterface;
 use Illuminate\Encryption\Encrypter;
 use OneTimeNote\Models\Note;
@@ -21,7 +20,7 @@ class EloquentNoteRepository implements NoteRepositoryInterface {
 
         try {
             $note->secure_note = $encryption->decrypt($note->secure_note);
-        } catch (DecryptException $e) {
+        } catch (\Exception $e) {
             return null;
         }
 

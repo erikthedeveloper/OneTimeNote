@@ -1,6 +1,7 @@
 <?php
 
     use OneTimeNote\Models\Note;
+    use Illuminate\Encryption\Encrypter;
 
     class NoteControllerTest extends TestCase {
 
@@ -32,7 +33,7 @@
             $this->mock->shouldReceive('delete')->once()->andReturnNull();
 
             $Mailer = Mockery::mock('OneTimeNote\Interfaces\NoteMailerInterface');
-            $Mailer->shouldReceive('to')->once()->andReturnNull();
+            $Mailer->shouldReceive('to')->once()->andReturn(); // Just pretend mail is successful
 
             $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
             $this->app->instance('OneTimeNote\Interfaces\NoteMailerInterface', $Mailer);
@@ -91,6 +92,8 @@
         {
             // Arrange
             $this->mock->shouldReceive('existingNoteByIpAddress')->once()->andReturn(false);
+
+            //@TODO - Should I actually create a note with invalid data and test or is setting create to andReturnNull() good enough?
             $this->mock->shouldReceive('create')->once()->andReturnNull(); // Failed validation returns null anyway
             $this->app->instance('OneTimeNote\Interfaces\NoteRepositoryInterface', $this->mock);
 
