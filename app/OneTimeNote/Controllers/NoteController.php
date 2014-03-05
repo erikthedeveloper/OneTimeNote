@@ -45,8 +45,8 @@ class NoteController extends \Controller {
         if ($existing_note) {
             // @TODO - Possibly move all of this to repository to decouple from controller, possibly a before filter?
             $now = new Carbon();
-            if($now->diffInMinutes($existing_note->created_at) < 1) {
-                return Response::json(array('message' => Lang::get('onetimenote.messages.NOTE_DURATION', array('time' => 'one full minute'))), 403);
+            if($now->diffInMinutes($existing_note->created_at) < Config::get('onetimenote.NOTE_POST_DURATION')) {
+                return Response::json(array('message' => Lang::get('onetimenote.messages.NOTE_POST_DURATION', array('time' => 'one full minute'))), 403);
             };
         }
 
