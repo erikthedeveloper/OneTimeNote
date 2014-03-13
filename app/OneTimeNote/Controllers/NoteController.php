@@ -50,7 +50,7 @@ class NoteController extends \Controller {
             };
         }
 
-        $note = $this->note->create(Input::all());
+        $note = $this->note->create(Input::json()->all());
 
         if (!$note) {
             return Response::json(array('message' => Lang::get('onetimenote.messages.NOTE_VALIDATION_ERROR')), 400);

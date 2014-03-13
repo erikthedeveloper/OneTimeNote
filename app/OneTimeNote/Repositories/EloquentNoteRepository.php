@@ -24,6 +24,8 @@ class EloquentNoteRepository implements NoteRepositoryInterface {
             return null;
         }
 
+        $note->secure_note = nl2br($note->secure_note);
+
         return $note;
     }
 

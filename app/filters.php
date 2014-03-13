@@ -13,6 +13,14 @@
 
 App::before(function($request)
 {
+    if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        header('Access-Control-Allow-Origin', 'http://localhost:1337');
+        header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Request-With');
+        header('Access-Control-Allow-Credentials', 'true');
+
+        exit;
+    }
 });
 
 App::after(function($request, $response)
