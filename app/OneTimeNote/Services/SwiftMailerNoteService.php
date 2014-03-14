@@ -10,7 +10,7 @@ class SwiftMailerNoteService implements NoteMailerInterface {
     public function to($email, $subject) {
         $data = array('SITE_IMPLEMENTATION_URL' => Config::get('onetimenote.SITE_IMPLEMENTATION_URL'));
 
-        Mail::send(array('html' => 'mailer.default'), $data, function($message) use ($email, $subject)
+        Mail::send(array('html' => 'Mailer.default'), $data, function($message) use ($email, $subject)
         {
             $message->to($email)->subject($subject);
         });
