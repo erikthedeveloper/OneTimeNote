@@ -14,7 +14,7 @@
 App::before(function($request)
 {
     if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-        header('Access-Control-Allow-Origin', 'http://localhost:1337');
+        header('Access-Control-Allow-Origin', 'http://pathsofdesign.github.io');
         header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Request-With');
         header('Access-Control-Allow-Credentials', 'true');
@@ -25,7 +25,7 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-    $response->headers->set('Access-Control-Allow-Origin', 'http://localhost:1337');
+    $response->headers->set('Access-Control-Allow-Origin', 'http://pathsofdesign.github.io');
     $response->headers->set('Access-Control-Allow-Methods', 'GET, POST');
     $response->headers->set('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Requested-With');
     $response->headers->set('Access-Control-Allow-Credentials', 'true');
