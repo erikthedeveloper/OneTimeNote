@@ -80,12 +80,14 @@ OneTimeNote offers a convenience command that allows you to delete notes older t
 oneTimeNote:delete --days=20
 ```
 
-Demo
+Implementation and Demo
 ----
-Coming Soon
+**Demo:**
+[http://pathsofdesign.github.io/OneTimeNote-site](http://pathsofdesign.github.io/OneTimeNote-site)
+
+**Code:**
+[http://www.github.com/pathsofdesign/OneTimeNote-site](http://www.github.com/pathsofdesign/OneTimeNote-site)
 
 License
 ----
 MIT
-
-[@pathsofdesign]:http://www.twitter.com/pathsofdesign
