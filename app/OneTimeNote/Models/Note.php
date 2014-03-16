@@ -18,7 +18,7 @@ class Note extends Model {
 	protected $hidden = array('id', 'ip_address', 'url_id', 'email', 'created_at', 'updated_at');
     protected $fillable = array('email', 'secure_note');
     protected static $rules = array(
-        'secure_note' => 'required|min:1|max:1024',
+        'secure_note' => 'required|min:1',
         'email' => 'email'
     );
 }
