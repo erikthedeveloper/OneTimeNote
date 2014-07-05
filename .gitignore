@@ -4,7 +4,6 @@
 /node_modules
 /.sass-cache
 composer.phar
-composer.lock
 .env.local.php
 .env.php
 .DS_Store
